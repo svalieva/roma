@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Music2, VolumeX, ChevronDown, Send } from "lucide-react";
+import { Music2, VolumeX, ChevronDown, MapPin, ArrowRight } from "lucide-react";
 import "./style.css";
 
 const wedding = {
@@ -20,6 +20,8 @@ const wedding = {
   timelineBg: { ru: "/images/fon_10.jpg", uz: "/images/fon_12.jpg" },
   locationBg: { ru: "/images/address_rus.jpg", uz: "/images/address_uz.jpg" },
   dressBg: { ru: "/images/fon_15.jpg", uz: "/images/dress_code.jpg" },
+  secondPhotoBg: { ru: "/images/foto_rus.jpg", uz: "/images/foto_uz.jpg" },
+  mapUrl: "https://yandex.ru/maps/-/CTxmb-9h",
 };
 
 const RU_MONTHS_GEN = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
@@ -44,15 +46,7 @@ const translations = {
     scroll: "листайте вниз",
     saveTheDate: "СОХРАНИТЕ ДАТУ",
     countdownLabels: ["дней", "часов", "минут", "секунд"],
-    rsvp: "ПОДТВЕРЖДЕНИЕ",
-    rsvpTitle: "Будете с нами?",
-    namePlaceholder: "Ваше имя и фамилия",
-    yes: "Да, с удовольствием",
-    no: "К сожалению, нет",
-    commentPlaceholder: "Комментарий (необязательно)",
-    submit: "Отправить ответ",
-    thanks: (answer) => `Спасибо! Ваш ответ: ${answer}`,
-    chooseAnswer: "Выберите вариант ответа.",
+    openMap: "Открыть карту",
     canWait: "С НЕТЕРПЕНИЕМ ЖДЁМ ВСТРЕЧИ",
     formatDate: (day, month, year) => `${day} ${RU_MONTHS_GEN[month]} ${year} года`,
     monthUpper: (m) => RU_MONTHS_UPPER[m],
@@ -70,15 +64,7 @@ const translations = {
     scroll: "pastga aylantiring",
     saveTheDate: "SANANI ESLAB QOLING",
     countdownLabels: ["kun", "soat", "daqiqa", "soniya"],
-    rsvp: "TASDIQLASH",
-    rsvpTitle: "Biz bilan boʻlasizmi?",
-    namePlaceholder: "Ismingiz va familiyangiz",
-    yes: "Ha, albatta",
-    no: "Afsuski, yoʻq",
-    commentPlaceholder: "Izoh (ixtiyoriy)",
-    submit: "Javobni yuborish",
-    thanks: (answer) => `Rahmat! Sizning javobingiz: ${answer}`,
-    chooseAnswer: "Javob variantini tanlang.",
+    openMap: "Xaritani ochish",
     canWait: "SIZ BILAN UCHRASHISHNI KUTAMIZ",
     formatDate: (day, month, year) => `${day}-${UZ_MONTHS[month]}, ${year}-yil`,
     monthUpper: (m) => UZ_MONTHS_UPPER[m],
@@ -114,16 +100,9 @@ function useCountdown(target) {
 
 function Section({ children, className = "", style }) {
   return (
-    <motion.section
-      className={`section ${className}`}
-      style={style}
-      initial={{ y: 34 }}
-      whileInView={{ y: 0 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-    >
+    <section className={`section ${className}`} style={style}>
       {children}
-    </motion.section>
+    </section>
   );
 }
 
@@ -131,7 +110,6 @@ function App() {
   const [lang, setLang] = useState("ru");
   const [opened, setOpened] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const [rsvp, setRsvp] = useState("");
   const audioRef = useRef(null);
   const countdown = useCountdown(wedding.date);
   const t = translations[lang];
@@ -168,12 +146,6 @@ function App() {
         setPlaying(true);
       } catch {}
     }
-  };
-
-  const submitRsvp = (e) => {
-    e.preventDefault();
-    const answer = rsvp === "yes" ? t.yes : rsvp === "no" ? t.no : "";
-    alert(answer ? t.thanks(answer) : t.chooseAnswer);
   };
 
   return (
@@ -277,7 +249,18 @@ function App() {
         <Section
           className="location-section"
           style={{ backgroundImage: `linear-gradient(rgba(247,240,234,.20), rgba(247,240,234,.20)), url(${wedding.locationBg[lang]})` }}
-        />
+        >
+          <a
+            className="map-button"
+            href={wedding.mapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <MapPin size={18} />
+            <span>{t.openMap}</span>
+            <ArrowRight size={18} />
+          </a>
+        </Section>
 
         <div className="section-divider" />
 
@@ -286,28 +269,12 @@ function App() {
           style={{ backgroundImage: `linear-gradient(rgba(247,240,234,.30), rgba(247,240,234,.30)), url(${wedding.dressBg[lang]})` }}
         />
 
-        <Section className="rsvp-section">
-          <p className="eyebrow">{t.rsvp}</p>
-          <h2 className="rsvp-title">{t.rsvpTitle}</h2>
+        <div className="section-divider section-divider-lg" />
 
-          <form className="rsvp-form" onSubmit={submitRsvp}>
-            <input placeholder={t.namePlaceholder} />
-            <div className="choice-row">
-              <label className={rsvp === "yes" ? "choice selected" : "choice"}>
-                <input type="radio" name="rsvp" value="yes" onChange={(e) => setRsvp(e.target.value)} />
-                <span>{t.yes}</span>
-              </label>
-              <label className={rsvp === "no" ? "choice selected" : "choice"}>
-                <input type="radio" name="rsvp" value="no" onChange={(e) => setRsvp(e.target.value)} />
-                <span>{t.no}</span>
-              </label>
-            </div>
-            <textarea placeholder={t.commentPlaceholder} rows="4" />
-            <button type="submit" className="submit-button">
-              {t.submit} <Send size={16} />
-            </button>
-          </form>
-        </Section>
+        <Section
+          className="photo-section-alt"
+          style={{ backgroundImage: `url(${wedding.secondPhotoBg[lang]})` }}
+        />
 
         <Section className="final-section">
           <p className="eyebrow">{t.canWait}</p>
