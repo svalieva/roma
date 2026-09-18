@@ -370,21 +370,21 @@ h2 {
 }
 
 .date-section .eyebrow {
-  font-size: 9.9px;
+  font-size: 11.47px;
   font-weight: 600;
 }
 
 .calendar-month,
 .calendar-meta {
   letter-spacing: .25em;
-  font-size: 9.9px;
+  font-size: 11.47px;
   font-weight: 600;
   color: var(--muted);
 }
 
 .calendar-day {
   margin: 15px 0;
-  font: 600 110px/.8 "Cormorant Garamond", serif;
+  font: 600 127.34px/.8 "Cormorant Garamond", serif;
   color: var(--accent);
   transform: translateY(-10px);
 }
@@ -402,13 +402,13 @@ h2 {
 
 .count-box strong {
   display: block;
-  font: 700 27.5px "Cormorant Garamond", serif;
+  font: 700 31.84px "Cormorant Garamond", serif;
 }
 
 .count-box span {
   display: block;
   margin-top: 4px;
-  font-size: 8.8px;
+  font-size: 10.19px;
   font-weight: 600;
   color: var(--muted);
 }
@@ -597,13 +597,27 @@ h2 {
 .final-section h2 span {
   font-family: "Cormorant Garamond", serif;
   font-size: .55em;
-  color: var(--ink);
+  color: var(--accent);
 }
+
 
 .final-section > p:last-of-type {
   color: var(--muted);
   font-size: 11px;
   letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.final-section .eyebrow {
+  font-size: 11px;
+}
+
+.families-label {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
 }
 
 .music-button,

@@ -6,7 +6,7 @@ import "./style.css";
 const wedding = {
   bride: { ru: "Дилсорабону", uz: "Dilsorabonu" },
   groom: { ru: "Ромизхон", uz: "Romizxon" },
-  finalGroomName: { ru: "Ахроровых", uz: "Ahrorovlar" },
+  finalGroomName: { ru: "Aхроровых", uz: "Ahrorovlar" },
   finalBrideName: { ru: "Насриддиновых", uz: "Nasriddinovlar" },
   date: "2026-10-24T18:00:00",
   displayDate: "24 • 10 • 2026",
@@ -42,6 +42,7 @@ const translations = {
     switchLangAria: "Переключить язык",
     openInvitation: "Открыть приглашение",
     tapSeal: "Нажмите на печать",
+    and: "и",
     musicOn: "Музыка играет",
     musicOff: "Без музыки",
     musicOnAria: "Выключить музыку",
@@ -50,7 +51,7 @@ const translations = {
     saveTheDate: "СОХРАНИТЕ ДАТУ",
     countdownLabels: ["дней", "часов", "минут", "секунд"],
     openMap: "Открыть карту",
-    canWait: "С НЕТЕРПЕНИЕМ ЖДЁМ ВСТРЕЧИ СЕМЬИ",
+    canWait: "С НЕТЕРПЕНИЕМ ЖДЁМ ВСТРЕЧИ,\nСЕМЬИ",
     formatDate: (day, month, year) => `${day} ${RU_MONTHS_GEN[month]} ${year} года`,
     monthUpper: (m) => RU_MONTHS_UPPER[m],
     weekday: (d) => RU_WEEKDAYS[d],
@@ -61,6 +62,8 @@ const translations = {
     switchLangAria: "Tilni almashtirish",
     openInvitation: "Taklifnomani ochish",
     tapSeal: "Muhrga bosing",
+    familiesLabel: "OILALARI",
+    and: "va",
     musicOn: "Musiqa yoqilgan",
     musicOff: "Musiqasiz",
     musicOnAria: "Musiqani oʻchirish",
@@ -275,7 +278,7 @@ function App() {
         <Section className="photo-section">
           <div className="photo-frame">
             <img className="photo-image" src="/images/fon_9.jpg" alt="" />
-            <div className="photo-caption">{wedding.groom[lang]} &amp; {wedding.bride[lang]}</div>
+            <div className="photo-caption">{wedding.groom[lang]} {t.and} {wedding.bride[lang]}</div>
           </div>
         </Section>
 
@@ -307,8 +310,13 @@ function App() {
         <div className="section-divider section-divider-lg" />
 
         <Section className="final-section">
-          <p className="eyebrow">{t.canWait}</p>
+          <p className="eyebrow">
+            {t.canWait.split("\n").map((line, i) => (
+              <span key={i} style={{ display: "block", marginTop: i > 0 ? 6 : 0 }}>{line}</span>
+            ))}
+          </p>
           <h2>{wedding.finalGroomName[lang]} <span>&amp;</span> {wedding.finalBrideName[lang]}</h2>
+          {lang === "uz" && <p className="families-label">{t.familiesLabel}</p>}
           <p>{formattedDate}</p>
         </Section>
       </main>
