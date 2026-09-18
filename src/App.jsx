@@ -4,8 +4,10 @@ import { Music2, VolumeX, ChevronDown, MapPin, ArrowRight } from "lucide-react";
 import "./style.css";
 
 const wedding = {
-  bride: { ru: "Дилсора", uz: "Dilsora" },
-  groom: { ru: "Ромиз", uz: "Romiz" },
+  bride: { ru: "Дилсорабону", uz: "Dilsorabonu" },
+  groom: { ru: "Ромизхон", uz: "Romizxon" },
+  finalGroomName: "Ахроровых",
+  finalBrideName: "Насриддиновых",
   date: "2026-10-24T18:00:00",
   displayDate: "24 • 10 • 2026",
   venue: "The Garden House",
@@ -39,6 +41,7 @@ const translations = {
     langLabel: "RU",
     switchLangAria: "Переключить язык",
     openInvitation: "Открыть приглашение",
+    tapSeal: "Нажмите на печать",
     musicOn: "Музыка играет",
     musicOff: "Без музыки",
     musicOnAria: "Выключить музыку",
@@ -47,7 +50,7 @@ const translations = {
     saveTheDate: "СОХРАНИТЕ ДАТУ",
     countdownLabels: ["дней", "часов", "минут", "секунд"],
     openMap: "Открыть карту",
-    canWait: "С НЕТЕРПЕНИЕМ ЖДЁМ ВСТРЕЧИ",
+    canWait: "С НЕТЕРПЕНИЕМ ЖДЁМ ВСТРЕЧИ СЕМЬИ",
     formatDate: (day, month, year) => `${day} ${RU_MONTHS_GEN[month]} ${year} года`,
     monthUpper: (m) => RU_MONTHS_UPPER[m],
     weekday: (d) => RU_WEEKDAYS[d],
@@ -57,6 +60,7 @@ const translations = {
     langLabel: "UZ",
     switchLangAria: "Tilni almashtirish",
     openInvitation: "Taklifnomani ochish",
+    tapSeal: "Muhrga bosing",
     musicOn: "Musiqa yoqilgan",
     musicOff: "Musiqasiz",
     musicOnAria: "Musiqani oʻchirish",
@@ -161,20 +165,46 @@ function App() {
           <motion.div
             className="envelope-screen"
             initial={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: { duration: 1.1, delay: 1.0 } }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
           >
-            <div className="envelope-half envelope-half-left" />
-            <div className="envelope-half envelope-half-right" />
-            <motion.button
-              className="open-button"
-              onClick={openInvitation}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.94 }}
-              aria-label={t.openInvitation}
+            <motion.div
+              className="envelope-half envelope-half-left"
+              initial={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 1.2, ease: [0.65, 0, 0.35, 1] }}
+            >
+              <motion.button
+                className="open-button"
+                onClick={openInvitation}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.94 }}
+                aria-label={t.openInvitation}
+              />
+            </motion.div>
+            <motion.div
+              className="envelope-half envelope-half-right"
+              initial={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 1.2, ease: [0.65, 0, 0.35, 1] }}
             />
+            <motion.div
+              className="seal-hint"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
+            >
+              <motion.span
+                animate={{ y: [0, -8, 0] }}
+                transition={{ repeat: Infinity, duration: 2.6, ease: "easeInOut" }}
+              >
+                {t.tapSeal}
+              </motion.span>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -218,6 +248,11 @@ function App() {
         </Section>
 
         <Section className="intro" style={{ backgroundImage: `url(${wedding.introBg[lang]})` }} />
+
+        <Section
+          className="photo-section-alt"
+          style={{ backgroundImage: `url(${wedding.secondPhotoBg[lang]})` }}
+        />
 
         <Section className="date-section">
           <p className="eyebrow">{t.saveTheDate}</p>
@@ -271,14 +306,9 @@ function App() {
 
         <div className="section-divider section-divider-lg" />
 
-        <Section
-          className="photo-section-alt"
-          style={{ backgroundImage: `url(${wedding.secondPhotoBg[lang]})` }}
-        />
-
         <Section className="final-section">
           <p className="eyebrow">{t.canWait}</p>
-          <h2>{wedding.groom[lang]} <span>&amp;</span> {wedding.bride[lang]}</h2>
+          <h2>{wedding.finalGroomName} <span>&amp;</span> {wedding.finalBrideName}</h2>
           <p>{formattedDate}</p>
         </Section>
       </main>

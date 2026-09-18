@@ -77,7 +77,7 @@ button, a {
 .open-button {
   position: absolute;
   z-index: 10;
-  left: calc(50% - 54px);
+  right: -54px;
   top: calc(50% - 54px);
   width: 108px;
   height: 108px;
@@ -88,6 +88,29 @@ button, a {
   background-position: 57% 44%;
   clip-path: circle(48% at 50% 50%);
   filter: drop-shadow(0 10px 16px rgba(30, 20, 15, .4));
+}
+
+.seal-hint {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  bottom: 48px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.seal-hint span {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: #f7f0ea;
+  box-shadow: 0 8px 22px rgba(40, 25, 10, .28);
+  font: 500 11px "DM Sans", sans-serif;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: #d4af6a;
 }
 
 .main {
@@ -149,7 +172,7 @@ button, a {
 
 .hero h1 {
   margin: 70px 0 0;
-  font: 400 clamp(59.96px, 15.68vw, 99.62px)/.7 "Great Vibes", cursive;
+  font: 400 clamp(54.11px, 14.16vw, 89.91px)/.7 "Great Vibes", cursive;
   color: #3b2418;
   display: flex;
   flex-direction: column;
@@ -346,16 +369,22 @@ h2 {
   padding: 28px 20px;
 }
 
+.date-section .eyebrow {
+  font-size: 9.9px;
+  font-weight: 600;
+}
+
 .calendar-month,
 .calendar-meta {
   letter-spacing: .25em;
-  font-size: 9px;
+  font-size: 9.9px;
+  font-weight: 600;
   color: var(--muted);
 }
 
 .calendar-day {
   margin: 15px 0;
-  font: 400 100px/.8 "Cormorant Garamond", serif;
+  font: 600 110px/.8 "Cormorant Garamond", serif;
   color: var(--accent);
   transform: translateY(-10px);
 }
@@ -373,13 +402,14 @@ h2 {
 
 .count-box strong {
   display: block;
-  font: 500 25px "Cormorant Garamond", serif;
+  font: 700 27.5px "Cormorant Garamond", serif;
 }
 
 .count-box span {
   display: block;
   margin-top: 4px;
-  font-size: 8px;
+  font-size: 8.8px;
+  font-weight: 600;
   color: var(--muted);
 }
 
@@ -536,7 +566,7 @@ h2 {
   right: 0;
   bottom: 0;
   height: 160px;
-  background: linear-gradient(to bottom, transparent, #F0CA9F);
+  background: linear-gradient(to bottom, transparent, #E1BB90);
   pointer-events: none;
 }
 
@@ -554,7 +584,7 @@ h2 {
   right: 0;
   top: 0;
   height: 160px;
-  background: linear-gradient(to bottom, #F0CA9F, transparent);
+  background: linear-gradient(to bottom, #E1BB90, transparent);
   pointer-events: none;
 }
 
