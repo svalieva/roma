@@ -6,8 +6,8 @@ import "./style.css";
 const wedding = {
   bride: { ru: "Дилсорабону", uz: "Dilsorabonu" },
   groom: { ru: "Ромизхон", uz: "Romizxon" },
-  finalGroomName: "Ахроровых",
-  finalBrideName: "Насриддиновых",
+  finalGroomName: { ru: "Ахроровых", uz: "Ahrorovlar" },
+  finalBrideName: { ru: "Насриддиновых", uz: "Nasriddinovlar" },
   date: "2026-10-24T18:00:00",
   displayDate: "24 • 10 • 2026",
   venue: "The Garden House",
@@ -308,7 +308,7 @@ function App() {
 
         <Section className="final-section">
           <p className="eyebrow">{t.canWait}</p>
-          <h2>{wedding.finalGroomName} <span>&amp;</span> {wedding.finalBrideName}</h2>
+          <h2>{wedding.finalGroomName[lang]} <span>&amp;</span> {wedding.finalBrideName[lang]}</h2>
           <p>{formattedDate}</p>
         </Section>
       </main>
