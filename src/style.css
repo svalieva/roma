@@ -438,7 +438,7 @@ h2 {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 224px;
+  height: 90px;
   background: linear-gradient(to bottom, rgba(225,187,144,.15), rgba(225,187,144,1));
   pointer-events: none;
 }
@@ -457,7 +457,7 @@ h2 {
   left: 0;
   right: 0;
   top: 0;
-  height: 224px;
+  height: 204px;
   background: linear-gradient(to bottom, rgba(225,187,144,1), rgba(225,187,144,.15));
   pointer-events: none;
 }
