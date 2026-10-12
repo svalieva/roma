@@ -21,8 +21,6 @@ const wedding = {
   introBg: { ru: "/images/fon_7.jpg", uz: "/images/fon_11.jpg" },
   timelineBg: { ru: "/images/fon_10.jpg", uz: "/images/fon_12.jpg" },
   locationBg: { ru: "/images/address_rus.jpg", uz: "/images/address_uz.jpg" },
-  dressBg: { ru: "/images/fon_15.jpg", uz: "/images/dress_code.jpg" },
-  secondPhotoBg: { ru: "/images/foto_rus.jpg", uz: "/images/foto_uz.jpg" },
   mapUrl: "https://yandex.ru/maps/-/CTxmb-9h",
 };
 
@@ -252,11 +250,6 @@ function App() {
 
         <Section className="intro" style={{ backgroundImage: `url(${wedding.introBg[lang]})` }} />
 
-        <Section
-          className="photo-section-alt"
-          style={{ backgroundImage: `url(${wedding.secondPhotoBg[lang]})` }}
-        />
-
         <Section className="date-section">
           <p className="eyebrow">{t.saveTheDate}</p>
           <div className="calendar-card">
@@ -272,13 +265,6 @@ function App() {
                 <span>{t.countdownLabels[i]}</span>
               </div>
             ))}
-          </div>
-        </Section>
-
-        <Section className="photo-section">
-          <div className="photo-frame">
-            <img className="photo-image" src="/images/fon_9.jpg" alt="" />
-            <div className="photo-caption">{wedding.groom[lang]} {t.and} {wedding.bride[lang]}</div>
           </div>
         </Section>
 
@@ -299,13 +285,6 @@ function App() {
             <ArrowRight size={18} />
           </a>
         </Section>
-
-        <div className="section-divider" />
-
-        <Section
-          className="dress-section"
-          style={{ backgroundImage: `linear-gradient(rgba(247,240,234,.30), rgba(247,240,234,.30)), url(${wedding.dressBg[lang]})` }}
-        />
 
         <div className="section-divider section-divider-lg" />
 

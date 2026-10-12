@@ -290,45 +290,6 @@ h2 {
   margin-top: 35px;
 }
 
-.photo-section {
-  min-height: 80svh;
-  padding-top: 60px;
-  padding-bottom: 60px;
-  background: #E1BB90;
-}
-
-.photo-section::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 160px;
-  background: linear-gradient(to bottom, #E1BB90, transparent);
-  pointer-events: none;
-}
-
-.photo-frame {
-  width: min(86vw, 440px);
-  position: relative;
-  padding: 13px;
-  background: rgba(255,250,245,.65);
-  box-shadow: 0 20px 60px rgba(76,55,45,.12);
-}
-
-.photo-image {
-  display: block;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-}
-
-.photo-caption {
-  padding: 13px 0 4px;
-  font: 400 26px "Great Vibes", cursive;
-  color: var(--accent);
-}
-
 .date-section {
   background:
     linear-gradient(
@@ -506,68 +467,6 @@ h2 {
 
 .section-divider-lg {
   height: 50px;
-}
-
-.dress-section {
-  min-height: 0;
-  aspect-ratio: 2 / 3;
-  padding-top: 140px;
-  padding-bottom: 140px;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.dress-section::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 160px;
-  background: linear-gradient(to bottom, #E1BB90, transparent);
-  pointer-events: none;
-}
-
-.dress-section::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 160px;
-  background: linear-gradient(to bottom, transparent, #E1BB90);
-  pointer-events: none;
-}
-
-.photo-section-alt {
-  min-height: 0;
-  aspect-ratio: 941 / 1672;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.photo-section-alt::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 160px;
-  background: linear-gradient(to bottom, #E1BB90, transparent);
-  pointer-events: none;
-}
-
-.photo-section-alt::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 160px;
-  background: linear-gradient(to bottom, transparent, #E1BB90);
-  pointer-events: none;
 }
 
 .final-section {
